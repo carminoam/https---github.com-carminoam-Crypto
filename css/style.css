@@ -138,12 +138,12 @@ nav{
 #next , #prev {
     display: inline-block;
     width: 80px;
-    color: black;
 }
+
 .about_div{
     justify-content: center;
 }
 #profileImg{
     width: 50%;
-    border-radius: 10px;
+    border-radius: 30px;
 }

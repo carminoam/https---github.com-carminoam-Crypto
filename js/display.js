@@ -7,25 +7,31 @@ const loadingOff = () => {
     $("#loader").hide()
 }
 
-let counter = 0
-// load pages (30 per click)
-$("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-$("#next").on('click', () => {
-    counter += 30
-    let current = coinsList.slice(counter,counter + 30)
-    $("#cardsCon").empty()
-    createCards(current)
-    console.log(current)
-    $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-})
-$("#prev").on('click', () => {
-    counter -= 30
-    let current = coinsList.slice(counter,counter + 30)
-    $("#cardsCon").empty()
-    createCards(current)
-    console.log(current)
-    $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-})
+// let counter = 0
+// // load pages (30 per click)
+// $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+// $("#next").on('click', () => {
+//     counter += 30
+//     let current = coinsList.slice(counter,counter + 30)
+//     $("#cardsCon").empty()
+//     createCards(current)
+//     // console.log(current)
+//     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+// })
+// $("#prev").on('click', () => {
+//     counter -= 30
+//     let current = coinsList.slice(counter,counter + 30)
+//     $("#cardsCon").empty()
+//     createCards(current)
+//     // console.log(current)
+//     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+// })
+// $(".moreInfoBtn").on('click', function (e) {
+//     coinId = $(e.currentTarget).attr("data-id-btn")
+//     // createMoreInfo(coinId)
+//     checkLocalStorage(coinId)
+//     console.log(coinId)
+// })
 
 // show/hide elements on main display
 $(".about_div").hide()
@@ -61,24 +67,22 @@ window.addEventListener('scroll', () => {
     parallax.style.backgroundPositionY = offset * 0.7 + "px"
 })
 
-//more info
-const createMoreInfo = (obj) => {
-    $(".coins_div").hide()
-    $(".moreInfoDiv").slideDown()
-    $(".moreInfoDiv2").empty()
-    $(".moreInfoDiv2").append(`
-    <h4 class="card-header bg-primary">${obj.id}</h4>
-    <img class="coinImg" src="${obj.image.large}">
-    <ul class="ul">
-    <li>Price by USD: <span class="price">${obj.market_data.current_price.usd} $<span></li>
-    <li>Price by EUR: <span class="price">${obj.market_data.current_price.eur} €<span></li>
-    <li>Price by ILS: <span class="price">${obj.market_data.current_price.ils} ₪<span></li>
-    </ul>
-    <p> ${obj.description.en} </p>`)
-}
+
 
 // more info button X action
 $(".btnX").on('click', () => {
     $(".moreInfoDiv").hide()
     $(".coins_div").slideDown()
+})
+
+// hover animation
+$("#prev").hover(function(){
+    $(this).animate({ width: "100px" },300);
+}, function() {
+    $(this).animate({ width: "80px" });
+})
+$("#next").hover(function(){
+    $(this).animate({ width: "100px" },300);
+}, function() {
+    $(this).animate({ width: "80px" });
 })

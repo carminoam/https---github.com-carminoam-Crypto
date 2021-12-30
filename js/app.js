@@ -8,12 +8,6 @@ $(async () => {
         createCards(shortList)
         loadingOff()
 
-        $(".moreInfoBtn").on('click', function (e) {
-            coinId = $(e.currentTarget).attr("data-id-btn")
-            // createMoreInfo(coinId)
-            checkLocalStorage(coinId)
-            console.log(coinId)
-        })
     }
     catch (err) {
         console.log(err)
@@ -37,8 +31,35 @@ const createCards = (arrOfObj) => {
                 </div>`)
     }
     checkIfToggle()
+    btnOnClick()
 }
 
+let counter = 0
+// load pages (30 per click)
+$("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+$("#next").on('click', () => {
+    counter += 30
+    let current = coinsList.slice(counter,counter + 30)
+    $("#cardsCon").empty()
+    createCards(current)
+    // console.log(current)
+    $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+})
+$("#prev").on('click', () => {
+    counter -= 30
+    let current = coinsList.slice(counter,counter + 30)
+    $("#cardsCon").empty()
+    createCards(current)
+    // console.log(current)
+    $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
+})
+
+const btnOnClick = () => {
+    $(".moreInfoBtn").on('click', function (e) {
+    coinId = $(e.currentTarget).attr("data-id-btn")
+    checkLocalStorage(coinId)
+    })
+}
 
 // add/remove coin to live report by toggle button
 const checkIfToggle = () => {
@@ -88,16 +109,16 @@ const displayLiveReports = () => {
                 ry richardson ad squid.</p>
             </div>
           </div>`
-        )
+          )
+        }
     }
-}
-
-// alert for live report list
-const popAlert = () => {
-    $(".coins_div").hide()
-    $(".moreInfoDiv").slideDown()
-    $(".moreInfoDiv2").empty()
-    $(".moreInfoDiv2").append(`
+    
+    // alert for live report list
+    const popAlert = () => {
+        $(".coins_div").hide()
+        $(".moreInfoDiv").slideDown()
+        $(".moreInfoDiv2").empty()
+        $(".moreInfoDiv2").append(`
     <h4 class="card-header bg-primary">Ooooops!</h4>
     <p>The limit for live reports list is <b>5 coins</b> ...<br>
     if you want to add one you have to remove one of the coins below:</p>`)
@@ -107,21 +128,20 @@ const popAlert = () => {
             <label for="c${liveReportList[i]}">${liveReportList[i]}</label>
             <input class="form-check-input i1" type="checkbox" id="${liveReportList[i]}"checked>
           </div>`
-        )
+          )
+        }
+        $(".moreInfoDiv2").append(`<button class="btn btn-primary" onclick="removeByAlert()">Submit</button>`)
     }
-    $(".moreInfoDiv2").append(`<button class="btn btn-primary" onclick="removeByAlert()">Submit</button>`)
-}
-
-// remove coins from live report using alert
-const removeByAlert = () => {
-    // debugger
-    liveReportList = []
-    const $inputs = $(".i1")
-    // console.log($inputs[2])
-    for (let i in $inputs) {
-        if ($inputs[i].checked === true) {
-            const coinId = $inputs[i].id
-            liveReportList.push(coinId)
+    
+    // remove coins from live report using alert
+    const removeByAlert = () => {
+        liveReportList = []
+        const $inputs = $(".i1")
+        // console.log($inputs[2])
+        for (let i in $inputs) {
+            if ($inputs[i].checked === true) {
+                const coinId = $inputs[i].id
+                liveReportList.push(coinId)
             // console.log($inputs[i].id)
         } else if ($inputs[i].checked === false) {
             // console.log($inputs[i].id)חייב להבין איך עושים שהכרטיסים יקבלו unchecked
@@ -136,7 +156,6 @@ const removeByAlert = () => {
 
 // check local storage
 const checkLocalStorage = async (coinId) => {
-    debugger
     try {
         let coinLS = JSON.parse(localStorage.getItem(coinId))
         if (coinLS) {
@@ -154,14 +173,30 @@ const checkLocalStorage = async (coinId) => {
         console.log(err)
     }
 }
+//more info
+const createMoreInfo = (obj) => {
+    $(".coins_div").hide()
+    $(".moreInfoDiv").slideDown()
+    $(".moreInfoDiv2").empty()
+    $(".moreInfoDiv2").append(`
+    <h4 class="card-header bg-primary">${obj.id}</h4>
+    <img class="coinImg" src="${obj.image.large}">
+    <ul class="ul">
+    <li>Price by USD: <span class="price">${obj.market_data.current_price.usd} $<span></li>
+    <li>Price by EUR: <span class="price">${obj.market_data.current_price.eur} €<span></li>
+    <li>Price by ILS: <span class="price">${obj.market_data.current_price.ils} ₪<span></li>
+    </ul>
+    <p> ${obj.description.en} </p>`)
+}
 
 // search coin on page
 const searchBar = document.querySelector("#search")
 searchBar.addEventListener('keyup', (e) => {
+    // debugger
     const searchString = e.target.value.toLowerCase()
     const filteredCoins = coinsList.filter(coin => {
         return coin.symbol.toLowerCase().includes(searchString) || coin.name.toLowerCase().includes(searchString)
     })
-    document.querySelector(".coins_div").innerHTML = "<h2>Crypto Coins</h2>"
-    createCards(filteredCoins)
+    $("#cardsCon").empty()
+    createCards(filteredCoins.slice(0,30))
 })
