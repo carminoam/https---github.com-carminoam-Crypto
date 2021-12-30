@@ -1,0 +1,149 @@
+*{
+    font-family:serif;
+}
+
+h2{
+    padding: 30px;
+    font-size: 50px;
+}
+
+body{
+    text-align: center;
+    background-image: url("/assets/crypto-background.png");
+    background-size: 100%;
+}
+
+nav{
+    opacity: 0.85;
+    display: flex;
+    border-radius: 10px;
+    background-color: rgb(0, 4, 228);
+}
+
+.innerContainer{
+    text-align: center;
+    justify-content: center;
+}
+
+.card{
+    background-color: rgb(0, 4, 228);
+    margin: 10px;
+    opacity: 0.85;
+}
+
+.nav-link{
+    margin: 20px;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    font-size: 22px;
+    padding: 5px  300px;
+}
+
+#cardsCon {
+    justify-content: center;
+}
+.coins_div{
+    position: relative;
+}
+#next{
+    position:fixed;
+    right: 10px;
+    top: 50%;
+}
+#prev{
+    position:fixed;
+    left: 10px;
+    top: 50%;
+}
+
+.moreInfoDiv{
+    display: inline-block;
+    position: relative;
+    background-color: rgb(0, 4, 228);
+    border: rgb(0, 0, 0) 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+    width: 70%;
+    padding: 40px;
+    opacity: 0.9;
+}
+
+.live_reports{
+    display: inline-block;
+    background-color: rgb(0, 4, 228);
+    border: rgb(0, 0, 0) 1px solid;
+    border-radius: 10px;
+    margin: 10px;
+    width: 100%;
+    padding: 40px;
+    opacity: 0.9;
+}
+
+.btnX{
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    width: 30px;
+    padding-left: 8px;
+}
+
+.navbar-collapse{
+    justify-content: center;
+}
+
+.form-inline{
+    display: inline-flex;
+    align-self: flex-end;
+    padding-bottom: 3%;
+}
+
+.form-control{
+    margin-right: 10px;
+}
+
+.btn-outline-primary{
+    color: black;
+}
+
+.card-header{
+    border-radius: 10px;
+}
+
+.coinImg{
+    width: 150px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.price{
+    font-size: 25px;
+}
+
+.in{
+    display: inline-block;
+}
+
+.form-switch{
+    margin: 10px 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.loaderGif{
+    margin-top: 40px;
+    width: 20%;
+}
+
+#next , #prev {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    color: black;
+}
+.about_div{
+    justify-content: center;
+}
+#profileImg{
+    width: 50%;
+}
