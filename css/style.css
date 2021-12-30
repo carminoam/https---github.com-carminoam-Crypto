@@ -137,8 +137,7 @@ nav{
 
 #next , #prev {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 80px;
     color: black;
 }
 .about_div{
@@ -146,4 +145,5 @@ nav{
 }
 #profileImg{
     width: 50%;
+    border-radius: 10px;
 }

@@ -28,7 +28,7 @@ const createCards = (arrOfObj) => {
             `<div class="card c2 col-lg-2 col-md-3 col-xs-12">
             <div class="card-header bg-primary">${arrOfObj[obj].name}</div>
             <div class="card-body">
-            <h5 style="color:black;" class="card-title">${arrOfObj[obj].symbol}</h5>
+            <h5 class="card-title">${arrOfObj[obj].symbol}</h5>
             <div class="form-check form-switch in">
                     <input class="form-check-input toggler" type="checkbox" id="${arrOfObj[obj].id}" data-card-inp="${arrOfObj[obj].id}">
                 </div>
@@ -38,6 +38,7 @@ const createCards = (arrOfObj) => {
     }
     checkIfToggle()
 }
+
 
 // add/remove coin to live report by toggle button
 const checkIfToggle = () => {
@@ -71,6 +72,25 @@ const checkIfToggle = () => {
     })
 }
 let liveReportList = []
+
+// display live reports
+const displayLiveReports = () => {
+    $(".live_reports_div2").empty()
+    for(let i in liveReportList){
+        $(".live_reports_div2").append(
+            `<div class="live_reports card col-lg-2 col-md-3 col-xs-12">
+            <div class="card-header bg-primary">${liveReportList[i]}</div>
+            <div class="card-body">
+              <h5 class="card-title">${liveReportList[i]}</h5>
+              <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+                sapiente ea proident. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                ry richardson ad squid.</p>
+            </div>
+          </div>`
+        )
+    }
+}
 
 // alert for live report list
 const popAlert = () => {
@@ -135,28 +155,6 @@ const checkLocalStorage = async (coinId) => {
     }
 }
 
-//more info
-const createMoreInfo = (obj) => {
-    $(".coins_div").hide()
-    $(".moreInfoDiv").slideDown()
-    $(".moreInfoDiv2").empty()
-    $(".moreInfoDiv2").append(`
-    <h4 class="card-header bg-primary">${obj.id}</h4>
-    <img class="coinImg" src="${obj.image.large}">
-    <ul class="ul">
-    <li>Price by USD: <span class="price">${obj.market_data.current_price.usd} $<span></li>
-    <li>Price by EUR: <span class="price">${obj.market_data.current_price.eur} €<span></li>
-    <li>Price by ILS: <span class="price">${obj.market_data.current_price.ils} ₪<span></li>
-    </ul>
-    <p> ${obj.description.en} </p>`)
-}
-
-// more info button X action
-$(".btnX").on('click', () => {
-    $(".moreInfoDiv").hide()
-    $(".coins_div").slideDown()
-})
-
 // search coin on page
 const searchBar = document.querySelector("#search")
 searchBar.addEventListener('keyup', (e) => {
@@ -167,38 +165,3 @@ searchBar.addEventListener('keyup', (e) => {
     document.querySelector(".coins_div").innerHTML = "<h2>Crypto Coins</h2>"
     createCards(filteredCoins)
 })
-
-// show/hide elements for the nav bar
-$(".about_div").hide()
-$(".live_reports_div").hide()
-$(".moreInfoDiv").hide()
-
-$("#about_btn").on('click', () => {
-    $(".about_div").slideDown()
-    $(".live_reports_div").hide()
-    $(".coins_div").hide()
-    $(".moreInfoDiv").hide()
-})
-
-$("#live_charts_btn").on('click', () => {
-    $(".live_reports_div").slideDown()
-    $('.about_div').hide()
-    $(".coins_div").hide()
-    $(".moreInfoDiv").hide()
-})
-
-$("#coins_btn").on('click', () => {
-    $(".coins_div").slideDown()
-    $(".about_div").hide()
-    $(".live_reports_div").hide()
-    $(".moreInfoDiv").hide()
-})
-
-// parallax background-image
-const parallax = document.querySelector(".parallax")
-window.addEventListener('scroll', () => {
-    let offset = window.pageYOffset
-    parallax.style.backgroundPositionY = offset * 0.7 + "px"
-})
-
-
