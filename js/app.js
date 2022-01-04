@@ -7,7 +7,6 @@ $(async () => {
         coinsList = coins
         createCards(shortList)
         loadingOff()
-
     }
     catch (err) {
         console.log(err)
@@ -19,7 +18,7 @@ let coinsList = []
 const createCards = (arrOfObj) => {
     for (let obj in arrOfObj) {
         $("#cardsCon").append(
-            `<div class="card c2 col-lg-2 col-md-3 col-xs-12">
+            `<div class="card c2 col-lg-2">
             <div class="card-header bg-primary">${arrOfObj[obj].name}</div>
             <div class="card-body">
             <h5 class="card-title">${arrOfObj[obj].symbol}</h5>

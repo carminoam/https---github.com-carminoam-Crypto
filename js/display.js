@@ -75,14 +75,14 @@ $(".btnX").on('click', () => {
     $(".coins_div").slideDown()
 })
 
-// hover animation
-$("#prev").hover(function(){
-    $(this).animate({ width: "100px" },300);
-}, function() {
-    $(this).animate({ width: "80px" });
-})
-$("#next").hover(function(){
-    $(this).animate({ width: "100px" },300);
-}, function() {
-    $(this).animate({ width: "80px" });
-})
+// // hover animation
+// $("#prev").hover(function(){
+//     $(this).animate({ width: "100px" },300);
+// }, function() {
+//     $(this).animate({ width: "80px" });
+// })
+// $("#next").hover(function(){
+//     $(this).animate({ width: "100px" },300);
+// }, function() {
+//     $(this).animate({ width: "80px" });
+// })
