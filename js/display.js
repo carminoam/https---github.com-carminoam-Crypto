@@ -7,32 +7,6 @@ const loadingOff = () => {
     $("#loader").hide()
 }
 
-// let counter = 0
-// // load pages (30 per click)
-// $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-// $("#next").on('click', () => {
-//     counter += 30
-//     let current = coinsList.slice(counter,counter + 30)
-//     $("#cardsCon").empty()
-//     createCards(current)
-//     // console.log(current)
-//     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-// })
-// $("#prev").on('click', () => {
-//     counter -= 30
-//     let current = coinsList.slice(counter,counter + 30)
-//     $("#cardsCon").empty()
-//     createCards(current)
-//     // console.log(current)
-//     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
-// })
-// $(".moreInfoBtn").on('click', function (e) {
-//     coinId = $(e.currentTarget).attr("data-id-btn")
-//     // createMoreInfo(coinId)
-//     checkLocalStorage(coinId)
-//     console.log(coinId)
-// })
-
 // show/hide elements on main display
 $(".about_div").hide()
 $(".live_reports_div").hide()
@@ -67,22 +41,8 @@ window.addEventListener('scroll', () => {
     parallax.style.backgroundPositionY = offset * 0.7 + "px"
 })
 
-
-
 // more info button X action
 $(".btnX").on('click', () => {
     $(".moreInfoDiv").hide()
     $(".coins_div").slideDown()
 })
-
-// // hover animation
-// $("#prev").hover(function(){
-//     $(this).animate({ width: "100px" },300);
-// }, function() {
-//     $(this).animate({ width: "80px" });
-// })
-// $("#next").hover(function(){
-//     $(this).animate({ width: "100px" },300);
-// }, function() {
-//     $(this).animate({ width: "80px" });
-// })

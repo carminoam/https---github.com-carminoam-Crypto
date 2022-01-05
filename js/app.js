@@ -41,7 +41,6 @@ $("#next").on('click', () => {
     let current = coinsList.slice(counter,counter + 30)
     $("#cardsCon").empty()
     createCards(current)
-    // console.log(current)
     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
 })
 $("#prev").on('click', () => {
@@ -49,7 +48,6 @@ $("#prev").on('click', () => {
     let current = coinsList.slice(counter,counter + 30)
     $("#cardsCon").empty()
     createCards(current)
-    // console.log(current)
     $("#pages").html(`display coins: ${counter} to - ${counter + 30}`)
 })
 
@@ -69,7 +67,7 @@ const checkIfToggle = () => {
                 const itemId = this.id
                 liveReportList.push(itemId)
                 console.log(liveReportList)
-                console.log(e.currentTarget)
+                // console.log(e.currentTarget)
             } else {
                 const itemId = e.currentTarget.id
                 liveReportList = liveReportList.filter((item) => {
@@ -125,7 +123,7 @@ const displayLiveReports = () => {
         $(".moreInfoDiv2").append(
             `<div class="form-check form-switch card-header bg-info">
             <label for="c${liveReportList[i]}">${liveReportList[i]}</label>
-            <input class="form-check-input i1" type="checkbox" id="${liveReportList[i]}"checked>
+            <input class="form-check-input i1" type="checkbox" id="${liveReportList[i]}" checked />
           </div>`
           )
         }
@@ -136,16 +134,13 @@ const displayLiveReports = () => {
     const removeByAlert = () => {
         liveReportList = []
         const $inputs = $(".i1")
-        // console.log($inputs[2])
         for (let i in $inputs) {
             if ($inputs[i].checked === true) {
                 const coinId = $inputs[i].id
                 liveReportList.push(coinId)
-            // console.log($inputs[i].id)
         } else if ($inputs[i].checked === false) {
-            // console.log($inputs[i].id)חייב להבין איך עושים שהכרטיסים יקבלו unchecked
-            // $(`input[id=${$inputs[i].id}]`).removeAttr("checked")
-            console.log($(`input[data-card-inp="${$inputs[i].id}"]`))
+            console.log($inputs[i].id)
+            $(`input[id=${$inputs[i].id}]`).click()
         }
     }
     console.log(liveReportList)
