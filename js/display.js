@@ -17,6 +17,7 @@ $("#about_btn").on('click', () => {
     $(".live_reports_div").hide()
     $(".coins_div").hide()
     $(".moreInfoDiv").hide()
+    clearInterval(createChart)
 })
 
 $("#live_charts_btn").on('click', () => {
@@ -24,7 +25,7 @@ $("#live_charts_btn").on('click', () => {
     $('.about_div').hide()
     $(".coins_div").hide()
     $(".moreInfoDiv").hide()
-    displayLiveReports()
+    createChartOn()
 })
 
 $("#coins_btn").on('click', () => {
@@ -32,6 +33,7 @@ $("#coins_btn").on('click', () => {
     $(".about_div").hide()
     $(".live_reports_div").hide()
     $(".moreInfoDiv").hide()
+    clearInterval(createChart)
 })
 
 // parallax background-image
@@ -45,4 +47,15 @@ window.addEventListener('scroll', () => {
 $(".btnX").on('click', () => {
     $(".moreInfoDiv").hide()
     $(".coins_div").slideDown()
+})
+
+// search coin on page
+const searchBar = document.querySelector("#search")
+searchBar.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase()
+    const filteredCoins = coinsList.filter(coin => {
+        return coin.symbol.toLowerCase().includes(searchString) || coin.name.toLowerCase().includes(searchString)
+    })
+    $("#cardsCon").empty()
+    createCards(filteredCoins.slice(0,30))
 })

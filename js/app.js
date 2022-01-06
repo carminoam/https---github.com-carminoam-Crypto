@@ -67,7 +67,6 @@ const checkIfToggle = () => {
                 const itemId = this.id
                 liveReportList.push(itemId)
                 console.log(liveReportList)
-                // console.log(e.currentTarget)
             } else {
                 const itemId = e.currentTarget.id
                 liveReportList = liveReportList.filter((item) => {
@@ -90,27 +89,8 @@ const checkIfToggle = () => {
     })
 }
 let liveReportList = []
-
-// display live reports
-const displayLiveReports = () => {
-    $(".live_reports_div2").empty()
-    for(let i in liveReportList){
-        $(".live_reports_div2").append(
-            `<div class="live_reports card col-lg-2 col-md-3 col-xs-12">
-            <div class="card-header bg-primary">${liveReportList[i]}</div>
-            <div class="card-body">
-              <h5 class="card-title">${liveReportList[i]}</h5>
-              <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-                ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                sapiente ea proident. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                ry richardson ad squid.</p>
-            </div>
-          </div>`
-          )
-        }
-    }
     
-    // alert for live report list
+    // alert for live report list---------------------------------------------------------
     const popAlert = () => {
         $(".coins_div").hide()
         $(".moreInfoDiv").slideDown()
@@ -182,15 +162,3 @@ const createMoreInfo = (obj) => {
     </ul>
     <p> ${obj.description.en} </p>`)
 }
-
-// search coin on page
-const searchBar = document.querySelector("#search")
-searchBar.addEventListener('keyup', (e) => {
-    // debugger
-    const searchString = e.target.value.toLowerCase()
-    const filteredCoins = coinsList.filter(coin => {
-        return coin.symbol.toLowerCase().includes(searchString) || coin.name.toLowerCase().includes(searchString)
-    })
-    $("#cardsCon").empty()
-    createCards(filteredCoins.slice(0,30))
-})
